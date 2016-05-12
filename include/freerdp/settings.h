@@ -601,6 +601,7 @@ typedef struct _RDPDR_PARALLEL RDPDR_PARALLEL;
 #define FreeRDP_DisableCredentialsDelegation 			1099
 #define FreeRDP_AuthenticationLevel				1100
 #define FreeRDP_AllowedTlsCiphers				1101
+#define FreeRDP_VmConnectMode					1102
 #define FreeRDP_MstscCookieMode					1152
 #define FreeRDP_CookieMaxLength					1153
 #define FreeRDP_PreconnectionId					1154
@@ -635,6 +636,7 @@ typedef struct _RDPDR_PARALLEL RDPDR_PARALLEL;
 #define FreeRDP_CertificateContent 1416
 #define FreeRDP_PrivateKeyContent	1417
 #define FreeRDP_RdpKeyContent		1418
+#define FreeRDP_AutoAcceptCertificate		1419
 
 #define FreeRDP_Workarea					1536
 #define FreeRDP_Fullscreen					1537
@@ -1002,7 +1004,8 @@ struct rdp_settings
 	ALIGN64 BOOL DisableCredentialsDelegation; /* 1099 */
 	ALIGN64 BOOL AuthenticationLevel; /* 1100 */
 	ALIGN64 char* AllowedTlsCiphers; /* 1101 */
-	UINT64 padding1152[1152 - 1102]; /* 1102 */
+	ALIGN64 BOOL VmConnectMode; /* 1102 */
+	UINT64 padding1152[1152 - 1103]; /* 1103 */
 
 	/* Connection Cookie */
 	ALIGN64 BOOL MstscCookieMode; /* 1152 */
@@ -1056,7 +1059,8 @@ struct rdp_settings
 	ALIGN64 char *CertificateContent; /* 1416 */
 	ALIGN64 char *PrivateKeyContent; /* 1417 */
 	ALIGN64 char* RdpKeyContent; /* 1418 */
-	UINT64 padding1472[1472 - 1419]; /* 1419 */
+	ALIGN64 BOOL AutoAcceptCertificate; /* 1419 */
+	UINT64 padding1472[1472 - 1420]; /* 1420 */
 	UINT64 padding1536[1536 - 1472]; /* 1472 */
 
 	/**
