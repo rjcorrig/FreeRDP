@@ -327,6 +327,8 @@ static void rdpsnd_mac_waveplay(rdpsndDevicePlugin* device, RDPSND_WAVE* wave)
 	length = wave->length > audioBuffer->mAudioDataBytesCapacity ? audioBuffer->mAudioDataBytesCapacity : wave->length;
     
 	CopyMemory(audioBuffer->mAudioData, wave->data, length);
+	free(wave->data);
+	wave->data = NULL;
 	audioBuffer->mAudioDataByteSize = length;
 	audioBuffer->mUserData = wave;
 	
@@ -346,7 +348,7 @@ static void rdpsnd_mac_waveplay(rdpsndDevicePlugin* device, RDPSND_WAVE* wave)
 	device->Start(device);
 }
 
-#ifdef STATIC_CHANNELS
+#ifdef BUILTIN_CHANNELS
 #define freerdp_rdpsnd_client_subsystem_entry	mac_freerdp_rdpsnd_client_subsystem_entry
 #else
 #define freerdp_rdpsnd_client_subsystem_entry	FREERDP_API freerdp_rdpsnd_client_subsystem_entry
