@@ -77,7 +77,9 @@ void mac_set_view_size(rdpContext* context, MRDPView* view);
 		}
 		else
 		{
-			winTitle = [[NSString alloc] initWithCString:mfc->context.settings->ServerHostname];
+			winTitle = [[NSString alloc] initWithFormat:@"%s:%u", 
+					mfc->context.settings->ServerHostname,
+					mfc->context.settings->ServerPort];
 		}
 
 		[window setTitle:winTitle];
