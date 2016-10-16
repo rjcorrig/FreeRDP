@@ -77,7 +77,7 @@ void mac_set_view_size(rdpContext* context, MRDPView* view);
 		}
 		else
 		{
-			winTitle = [[NSString alloc] initWithCString:"FreeRDP"];
+			winTitle = [[NSString alloc] initWithCString:mfc->context.settings->ServerHostname];
 		}
 
 		[window setTitle:winTitle];
