@@ -966,8 +966,9 @@ BOOL mac_authenticate(freerdp* instance, char** username, char** password,
                       char** domain)
 {
 	PasswordDialog* dialog = [PasswordDialog new];
-	dialog.serverHostname = [NSString stringWithCString:
-	                         instance->settings->ServerHostname encoding:NSUTF8StringEncoding];
+	dialog.serverHostname = [NSString stringWithFormat:@"%s:%u",
+					instance->settings->ServerHostname,
+					instance->settings->ServerPort];
 
 	if (*username)
 		dialog.username = [NSString stringWithCString:*username encoding:
