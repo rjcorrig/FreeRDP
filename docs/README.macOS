@@ -5,3 +5,18 @@ pointing to the openssl root directory befor building.
 For example with brew it would look like this:
 
 export PKG_CONFIG_PATH=$(brew --prefix)/opt/openssl/lib/pkgconfig
+
+2017-10-18:
+With "Sierra"
+
+brew install cmake
+brew install openssl
+
+do NOT brew install pkg-config
+
+git clone git@github.com:rjcorrig/FreeRDP.git MacFreeRDP && cd MacFreeRDP
+# just tell cmake where the openssl stuff is, don't fiddle with links, paths or pkg-config
+cmake -DCMAKE_OSX_ARCHITECTURES:STRING=x86_64 -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_INCLUDE_DIR=/usr/local/opt/openssl/include -DOPENSSL_LIBRARIES=/usr/local/opt/openssl/lib
+client/Mac/cli/MacFreeRDP.app/Contents/MacOS/MacFreeRDP /v:server.name.com /cert-ignore
+make
+
