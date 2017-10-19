@@ -23,11 +23,11 @@ export MACOSX_DEPLOYMENT_TARGET=10.7
 # Run cmake for FreeRDP and MacFreeRDP
 mkdir ${XCODE_PROJ_DIR} >/dev/null 2>&1 
 pushd ${XCODE_PROJ_DIR}
-cmake ${BUILDTYPE} -G "$GEN" -D "CMAKE_OSX_ARCHITECTURES:STRING=x86_64" ../
+cmake ${BUILDTYPE} -G "$GEN" -D "CMAKE_OSX_ARCHITECTURES:STRING=x86_64" -D "CMAKE_MACOSX_RPATH:BOOL=FALSE" ../
 popd
 mkdir ${CLIENT_MAC_DIR}/${XCODE_PROJ_DIR} >/dev/null 2>&1 
 pushd ${CLIENT_MAC_DIR}/${XCODE_PROJ_DIR}
-cmake ${BUILDTYPE} -G "$GEN" -D "CMAKE_OSX_ARCHITECTURES:STRING=x86_64" ../
+cmake ${BUILDTYPE} -G "$GEN" -D "CMAKE_OSX_ARCHITECTURES:STRING=x86_64" -D "CMAKE_MACOSX_RPATH:BOOL=FALSE" ../
 popd
 
 # Check for errors; otherwise, ask for compile.
