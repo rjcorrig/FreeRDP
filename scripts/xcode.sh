@@ -18,6 +18,7 @@ MANPAGES=-DWITH_MANPAGES="${WITHMANPAGES:NO}"
 export OPENSSL_ROOT_DIR=/usr/local/opt/openssl 
 export OPENSSL_INCLUDE_DIR=/usr/local/opt/openssl/include 
 export OPENSSL_LIBRARIES=/usr/local/opt/openssl/lib
+export MACOSX_DEPLOYMENT_TARGET=10.7
 
 # Run cmake for FreeRDP and MacFreeRDP
 mkdir ${XCODE_PROJ_DIR} >/dev/null 2>&1 
