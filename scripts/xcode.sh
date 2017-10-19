@@ -15,14 +15,18 @@ ARCH=-DCMAKE_OSX_ARCHITECTURES="${CMAKE_OSX_ARCHITECTURES:-i386;x86_64}"
 BUILDTYPE=-DCMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE:Debug}"
 MANPAGES=-DWITH_MANPAGES="${WITHMANPAGES:NO}"
 
+export OPENSSL_ROOT_DIR=/usr/local/opt/openssl 
+export OPENSSL_INCLUDE_DIR=/usr/local/opt/openssl/include 
+export OPENSSL_LIBRARIES=/usr/local/opt/openssl/lib
+
 # Run cmake for FreeRDP and MacFreeRDP
 mkdir ${XCODE_PROJ_DIR} >/dev/null 2>&1 
 pushd ${XCODE_PROJ_DIR}
-cmake ${BUILDTYPE} -G "$GEN" ${ARCH} ../
+cmake ${BUILDTYPE} -G "$GEN" -D "CMAKE_OSX_ARCHITECTURES:STRING=x86_64" ../
 popd
 mkdir ${CLIENT_MAC_DIR}/${XCODE_PROJ_DIR} >/dev/null 2>&1 
 pushd ${CLIENT_MAC_DIR}/${XCODE_PROJ_DIR}
-cmake ${BUILDTYPE} -G "$GEN" ${ARCH} ../
+cmake ${BUILDTYPE} -G "$GEN" -D "CMAKE_OSX_ARCHITECTURES:STRING=x86_64" ../
 popd
 
 # Check for errors; otherwise, ask for compile.
